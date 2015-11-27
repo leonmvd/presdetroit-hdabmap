@@ -1,0 +1,118 @@
+<html>
+<!-- This map is an demo for Preservation Detroit, made by Leon van der Meulen from the University of Groningen !-->
+<head>
+  <title>Local Historical Districts | Preservation Detroit</title>
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+  <link rel="stylesheet" href="geologo/leaflet-control-credits.css" />
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script type="text/javascript" src="geologo/leaflet-control-credits.js"></script>
+  <script src="histdist.js" type="text/javascript"></script>
+
+  <style>
+html, body, #map {
+  height: 100%;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  }
+  th {
+  text-align: left;
+  vertical-align: top;
+}
+      .info {
+  padding: 4px, 5px;
+  font: 16px/18px Arial, Helvetica, sans-serif;
+  background: white;
+  opacity: 0.8; 
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 3px;
+}
+.info h3 {
+  margin: 5 5 5px;
+  color: #1e414e;
+  font-family: "Lato", sans-serif;
+}
+.leaflet-container {
+    font: 12px/1.5 "Lato", sans-serif;
+    color: #1e414e;
+}
+.leaflet-container a {
+    color: #1e414e;
+}
+
+.leaflet-popup-content-wrapper {
+    padding: 0.1px;
+    text-align: left;
+    border-radius: 5px;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: white;
+    opacity: 0.95;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+}
+
+  </style>
+</head>
+<body>
+
+  <div id="map"></div>
+
+  <script>
+
+  var map = L.map('map',{minZoom:13, maxZoom:16}).setView([42.337, -83.07],14);
+
+  var basemap_0 = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a> &copy; <a href="https://github.com/geolicious/qgis2leaf" target ="_blank">qgis2leaf</a>, <a href="https://data.detroitmi.gov/d/hj4t-4mea?category=Government&view_name=Local-Historic-Districts" target="blank">Data: City of Detroit</a>',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }); 
+    basemap_0.addTo(map);
+
+  L.geoJson(histdist, {
+  }).addTo(map);
+
+  var histdistStyle = {
+    color: '#ffd52d',
+    fillColor: '#1e414e',
+    opacity: '0,6',
+    fillOpacity: '0.8',
+  };
+
+  function popup(feature, layer) {
+    if(feature.properties.HDAP_REP === 'No Report Available') {
+      layer.bindPopup('<h3>'+feature.properties.DISTRICT+'</h3><p>Unfortunately there is no report available</p>');
+    }
+    else {
+      layer.bindPopup('<h3>'+feature.properties.DISTRICT+'</h3><p>More information in the <a href="'+feature.properties.HDAP_REP+'" target="blank">HDAP Report</a> </p>');
+    }
+  }
+
+  L.geoJson(histdist, {
+    onEachFeature: popup, 
+    style: histdistStyle
+  }).addTo(map); 
+
+  var title = new L.Control();
+  title.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+  };
+  title.update = function () {
+    this._div.innerHTML = '<h3>Detroit Local Historical Districts</h3>'
+   };
+    title.addTo(map);
+
+  L.control.scale({options: {position: 'bottomleft',maxWidth: 100,metric: true,imperial: false,updateWhenIdle: false}}).addTo(map);
+
+  L.controlCredits({
+          image: "geologo/geo.png",
+          link: "http://www.rug.nl/society-business/centre-for-information-technology/research/services/gis/?lang=en",
+          text: "Interactive mapping<br/>by Geodienst"
+    }).addTo(map);
+
+  </script>
+</body>
+</html>
+	
