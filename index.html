@@ -79,11 +79,11 @@ html, body, #map {
   };
 
   function popup(feature, layer) {
-    if(feature.properties.HDAP_REP === 'No Report Available') {
+    if(feature.properties.HDAB_REP === 'No Report Available') {
       layer.bindPopup('<h3>'+feature.properties.DISTRICT+'</h3><p>Unfortunately there is no report available</p>');
     }
     else {
-      layer.bindPopup('<h3>'+feature.properties.DISTRICT+'</h3><p>More information in the <a href="'+feature.properties.HDAP_REP+'" target="blank">HDAB Report</a> </p>');
+      layer.bindPopup('<h3>'+feature.properties.DISTRICT+'</h3><p>More information in the <a href="'+feature.properties.HDAB_REP+'" target="blank">HDAB Report</a> </p>');
     }
   }
 
