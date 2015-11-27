@@ -1,7 +1,6 @@
 <html>
-<!-- This map is an demo for Preservation Detroit, made by Leon van der Meulen from the University of Groningen !-->
 <head>
-  <title>Local Historical Districts | Preservation Detroit</title>
+  <title>Local Historic Districts | Preservation Detroit</title>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
   <link rel="stylesheet" href="geologo/leaflet-control-credits.css" />
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
@@ -84,7 +83,7 @@ html, body, #map {
       layer.bindPopup('<h3>'+feature.properties.DISTRICT+'</h3><p>Unfortunately there is no report available</p>');
     }
     else {
-      layer.bindPopup('<h3>'+feature.properties.DISTRICT+'</h3><p>More information in the <a href="'+feature.properties.HDAP_REP+'" target="blank">HDAP Report</a> </p>');
+      layer.bindPopup('<h3>'+feature.properties.DISTRICT+'</h3><p>More information in the <a href="'+feature.properties.HDAP_REP+'" target="blank">HDAB Report</a> </p>');
     }
   }
 
@@ -100,7 +99,7 @@ html, body, #map {
     return this._div;
   };
   title.update = function () {
-    this._div.innerHTML = '<h3>Detroit Local Historical Districts</h3>'
+    this._div.innerHTML = '<h3>Detroit Local Historic Districts</h3>'
    };
     title.addTo(map);
 
