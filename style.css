@@ -1,0 +1,42 @@
+html, body, #map {
+  height: 100%;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  }
+  th {
+  text-align: left;
+  vertical-align: top;
+}
+      .info {
+  padding: 4px, 5px;
+  font: 16px/18px Arial, Helvetica, sans-serif;
+  background: white;
+  opacity: 0.8; 
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 3px;
+}
+.info h3 {
+  margin: 5 5 5px;
+  color: #1e414e;
+  font-family: "Lato", sans-serif;
+}
+.leaflet-container {
+    font: 12px/1.5 "Lato", sans-serif;
+    color: #1e414e;
+}
+.leaflet-container a {
+    color: #1e414e;
+}
+
+.leaflet-popup-content-wrapper {
+    padding: 0.1px;
+    text-align: left;
+    border-radius: 5px;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: white;
+    opacity: 0.95;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+}
